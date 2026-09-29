@@ -9,6 +9,8 @@
 [![Hugging Face Models](https://img.shields.io/badge/Hugging%20Face%20Models-800k%2B%20downloads-brightgreen?logo=huggingface)](https://huggingface.co/FluidInference)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/FluidInference/FluidAudio)
 
+> **About this fork** (`grapeot/FluidAudio`): based on `v0.15.0`, the `visionos` branch declares `.visionOS(.v2)` in `Package.swift` (tag `v0.15.9`). The upstream manifest declares no visionOS floor, so SwiftPM compiles the package at the default visionOS 1.0 floor, and the unguarded Core ML streaming APIs (`MLState`, `makeState()`, `stateDescriptionsByName` — visionOS 2.0+) fail to build for visionOS targets. Basing on `v0.15.0` (rather than `0.16+`) is deliberate: from `0.16` the package ships a prebuilt `NemoTextProcessing` xcframework with no visionOS slice. Re-sync with upstream by merging `upstream/main` into the `visionos` branch; if upstream ever declares a visionOS floor upstream, this fork can be retired.
+
 FluidAudio is a Swift SDK for fully local, low-latency audio AI on Apple devices, with inference offloaded to the Apple Neural Engine (ANE), resulting in less memory and generally faster inference.
 
 The SDK includes state-of-the-art speaker diarization, transcription, and voice activity detection via open-source models (MIT/Apache 2.0) that can be integrated with just a few lines of code. Models are optimized for background processing, ambient computing and always on workloads by running inference on the ANE, minimizing CPU usage and avoiding GPU/MPS entirely.
